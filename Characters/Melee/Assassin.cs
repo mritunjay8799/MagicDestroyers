@@ -138,8 +138,26 @@ namespace MagicDestroyers.Characters.Melee
 
 
         public Assassin()
+            :this(1,"Assassin")
         {
-            
+        }
+
+        public Assassin(int level, string name)
+            : this(100, level, name)
+        {
+        }
+
+        public Assassin(int healthPoints, int level, string name)
+        {
+            this.AbilityPoints = 100;
+            this.HealthPoints = healthPoints;
+            this.Level = level;
+
+            this.Faction = "Melee";
+            this.Name = name;
+
+            this.Weapon = new Sword();
+            this.BodyArmor = new LightLeatherVest();
         }
 
         public void Raze()

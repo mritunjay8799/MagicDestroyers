@@ -15,11 +15,11 @@ namespace MagicDestroyers.Characters.Melee
         private int healthPoints;
         private int level;
 
-        private string? faction;
-        private string? name;
+        private string faction;
+        private string name;
 
-        private Chainlink? bodyArmor;
-        private Axe? weapon;
+        private Chainlink bodyArmor;
+        private Axe weapon;
 
         public int AbilityPoints
         {
@@ -135,11 +135,28 @@ namespace MagicDestroyers.Characters.Melee
                 weapon = value;
             }
         }
-        
+
         public Warrior()
+             : this(1, "Warrior")
         {
-            
         }
+        public Warrior(int level, string name)
+            : this(100, level, name)
+        {
+        }
+        public Warrior(int healthPoints, int level, string name)
+        {
+            this.AbilityPoints = 100;
+            this.HealthPoints = healthPoints;
+            this.Level = level;
+
+            this.Faction = "Melee";
+            this.Name = name;
+
+            this.Weapon = new Axe();
+            this.BodyArmor = new Chainlink();
+        }
+        
         public void Strike()
         {
 

@@ -1,4 +1,5 @@
-﻿using MagicDestroyers.Equipments.Armors.Leather;
+﻿using MagicDestroyers.Equipments.Armors.Heavy;
+using MagicDestroyers.Equipments.Armors.Leather;
 using MagicDestroyers.Equipments.Weapons.Blunt;
 using MagicDestroyers.Equipments.Weapons.Sharp;
 using System;
@@ -15,11 +16,11 @@ namespace MagicDestroyers.Characters.SpellCasters
         private int healthPoints;
         private int level;
 
-        private string? faction;
-        private string? name;
+        private string faction;
+        private string name;
 
-        private LightLeatherVest? bodyArmor;
-        private Staff? weapon;
+        private LightLeatherVest bodyArmor;
+        private Staff weapon;
 
         public int AbilityPoints
         {
@@ -136,8 +137,25 @@ namespace MagicDestroyers.Characters.SpellCasters
             }
         }
 
-        public Druid() 
+        public Druid()
+            : this(1, "Druid")
         {
+        }
+        public Druid(int level, string name)
+            : this(100, level, name)
+        {
+        }
+        public Druid(int healthPoints, int level, string name)
+        {
+            this.AbilityPoints = 100;
+            this.HealthPoints = healthPoints;
+            this.Level = level;
+
+            this.Faction = "SpellCaster";
+            this.Name = name;
+
+            this.Weapon = new Staff();
+            this.BodyArmor = new LightLeatherVest();
         }
 
         public void Moonfire()

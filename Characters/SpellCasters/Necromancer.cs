@@ -1,4 +1,6 @@
 ﻿using MagicDestroyers.Equipments.Armors.Leather;
+using MagicDestroyers.Equipments.Armors.Light;
+using MagicDestroyers.Equipments.Weapons.Blunt;
 using MagicDestroyers.Equipments.Weapons.Sharp;
 using System;
 using System.Collections.Generic;
@@ -14,11 +16,11 @@ namespace MagicDestroyers.Characters.SpellCasters
         private int healthPoints;
         private int level;
 
-        private string? faction;
-        private string? name;
+        private string faction;
+        private string name;
 
-        private LightLeatherVest? bodyArmor;
-        private Sword? weapon;
+        private LightLeatherVest bodyArmor;
+        private Sword weapon;
 
         public int AbilityPoints
         {
@@ -134,10 +136,26 @@ namespace MagicDestroyers.Characters.SpellCasters
                 weapon = value;
             }
         }
-        
+
         public Necromancer()
+            : this(1, "Necromancer")
         {
-            
+        }
+        public Necromancer(int level, string name)
+            : this(100, level, name)
+        {
+        }
+        public Necromancer(int healthPoints, int level, string name)
+        {
+            this.AbilityPoints = 100;
+            this.HealthPoints = healthPoints;
+            this.Level = level;
+
+            this.Faction = "SpellCaster";
+            this.Name = name;
+
+            this.Weapon = new Sword();
+            this.BodyArmor = new LightLeatherVest();
         }
         public void ShadowRage()
         {

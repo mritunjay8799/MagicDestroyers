@@ -16,11 +16,11 @@ namespace MagicDestroyers.Characters.Melee
         private int healthPoints;
         private int level;
 
-        private string? faction;
-        private string? name;
+        private string faction;
+        private string name;
 
-        private Chainlink? bodyArmor;
-        private Hammer? weapon;
+        private Chainlink bodyArmor;
+        private Hammer weapon;
 
         public int AbilityPoints
         {
@@ -136,10 +136,28 @@ namespace MagicDestroyers.Characters.Melee
                 weapon = value;
             }
         }
+
         public Knight()
+            : this(1, "Knight")
         {
-            
         }
+        public Knight(int level, string name)
+            : this(100, level, name)
+        {
+        }
+        public Knight(int healthPoints, int level, string name)
+        {
+            this.AbilityPoints = 100;
+            this.HealthPoints = healthPoints;
+            this.Level = level;
+
+            this.Faction = "Melee";
+            this.Name = name;
+
+            this.Weapon = new Hammer();
+            this.BodyArmor = new Chainlink();
+        }
+       
         public void HolyBlow()
         {
 
@@ -149,6 +167,7 @@ namespace MagicDestroyers.Characters.Melee
         {
 
         }
+        
         public void RighteousWings()
         {
 

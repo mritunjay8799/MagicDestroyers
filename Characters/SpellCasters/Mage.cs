@@ -11,11 +11,11 @@ namespace MagicDestroyers.Characters.SpellCasters
         private int healthPoints;
         private int level;
 
-        private string? faction;
-        private string? name;
+        private string faction;
+        private string name;
 
-        private ClothRobe? bodyArmor;
-        private Staff? weapon;
+        private ClothRobe bodyArmor;
+        private Staff weapon;
 
         public int AbilityPoints
         {
@@ -131,10 +131,26 @@ namespace MagicDestroyers.Characters.SpellCasters
                 weapon = value;
             }
         }
-        
-        public Mage()
-        {
 
+        public Mage()
+            : this(1, "Mage")
+        {
+        }
+        public Mage(int level, string name)
+            : this(100, level, name)
+        {
+        }
+        public Mage(int healthPoints, int level, string name)
+        {
+            this.AbilityPoints = 100;
+            this.HealthPoints = healthPoints;
+            this.Level = level;
+
+            this.Faction = "SpellCaster";
+            this.Name = name;
+
+            this.Weapon = new Staff();
+            this.BodyArmor = new ClothRobe();
         }
 
         public void ArcaneWrath()

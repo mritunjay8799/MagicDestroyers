@@ -1,117 +1,25 @@
-﻿using MagicDestroyers.Equipments.Armors.Leather;
+﻿using MagicDestroyers.Enums;
+using MagicDestroyers.Equipments.Armors.Leather;
 using MagicDestroyers.Equipments.Weapons.Sharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
 
 namespace MagicDestroyers.Characters.Melee
 {
-    public class Assassin
+    public class Assassin : Melee
     {
-        private int abilityPoints;
-        private int healthPoints;
-        private int level;
+        private const int DEFAULT_ABILITY_POINTS = 100;
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTH_POINTS = 120;
+        private const string DEFAULT_NAME = "Assassin";
+        private const Faction DEFAULT_FACTION = Faction.Melee;
 
-        private string faction;
-        private string name;
+        /*
+         Ques - Why we can't use const for giving default value of custom class objects
+         */
+        private readonly Sword DEFAULT_WEAPON = new Sword();
+        private readonly LightLeatherVest DEFAULT_BODYARMOR = new LightLeatherVest();
 
         private LightLeatherVest bodyArmor;
         private Sword weapon;
-
-        public int AbilityPoints
-        {
-            get
-            {
-                return abilityPoints;
-            }
-            set
-            {
-                if (value >= 0 && value <= 100)
-                {
-                    abilityPoints = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 100.");
-                }
-            }
-        }
-        public int HealthPoints
-        {
-            get
-            {
-                return healthPoints;
-            }
-            set
-            {
-                if (value >= 0 && value <= 120)
-                {
-                    healthPoints = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, the value should be >= 0 and <= 120.");
-                }
-            }
-        }
-        public int Level
-        {
-            get
-            {
-                return level;
-            }
-            set
-            {
-                if (value >= 0)
-                {
-                    healthPoints = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException(string.Empty, "Inappropriate value, level should always be positive.");
-                }
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                if (value.Length >= 3 && value.Length <= 12)
-                {
-                    name = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "Inappropriate length of name, name should be between 3 and 12 characters.");
-                }
-            }
-        }
-        public string Faction
-        {
-            get
-            {
-                return faction;
-            }
-            set
-            {
-                if (value == "Melee" || value == "Spellcaster")
-                {
-                    faction = value;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Empty, "The faction should be either Melee or Spellcaster");
-                }
-            }
-        }
 
         public LightLeatherVest BodyArmor
         {
@@ -136,28 +44,29 @@ namespace MagicDestroyers.Characters.Melee
             }
         }
 
-
         public Assassin()
-            :this(1,"Assassin")
+            :this(DEFAULT_LEVEL,DEFAULT_NAME)
         {
         }
 
-        public Assassin(int level, string name)
-            : this(100, level, name)
+        /* 
+         * 'this' keyword here is pointing to the class Assassin basically this keyword points to container under which it is used.
+         */
+        public Assassin(int level, string name)    
+            : this(DEFAULT_HEALTH_POINTS, level, name)
         {
         }
 
         public Assassin(int healthPoints, int level, string name)
         {
-            this.AbilityPoints = 100;
-            this.HealthPoints = healthPoints;
-            this.Level = level;
+            base.AbilityPoints = DEFAULT_ABILITY_POINTS;
+            base.HealthPoints = healthPoints;
+            base.Level = level;
 
-            this.Faction = "Melee";
-            this.Name = name;
-
-            this.Weapon = new Sword();
-            this.BodyArmor = new LightLeatherVest();
+            base.Name = name;
+            base.Faction = DEFAULT_FACTION;
+            this.Weapon = DEFAULT_WEAPON;
+            this.BodyArmor = DEFAULT_BODYARMOR;
         }
 
         public void Raze()

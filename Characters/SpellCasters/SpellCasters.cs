@@ -1,6 +1,6 @@
 ﻿namespace MagicDestroyers.Characters.SpellCasters
 {
-    public class SpellCasters : Character
+    public abstract class SpellCasters : Character
     {
         private int manaPoints;
 
